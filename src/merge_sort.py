@@ -15,18 +15,35 @@ def merge(
 
     out: list[SupportsRichComparison] = []
 
+    left_index = 0
+    right_index = 0
 
-    while not any(i == 0 for i in [len(right), len(left)]):
-        if left[0] < right[0]:  # type: ignore[operator]
-            out.append(left.pop(0))
+    print(f"Index {left_index} for list (left) {left}")
+    print(f"Index {right_index} for list (right) {right}")
+
+
+    while all(
+            len(side) - 1 >= index
+            for side, index in
+            [(left, left_index), (right, right_index)]
+    ):
+        if left[left_index] < right[right_index]:  # type: ignore[operator]
+            out.append(left[left_index])
+            left_index += 1
         else:
-            out.append(right.pop(0))
+            out.append(right[right_index])
+            right_index += 1
+        print(f"Index {left_index} for list (left) {left}")
+        print(f"Index {right_index} for list (right) {right}")
 
-    if len(right) > 0:
-        out.extend(right)
+    if len(right) > right_index:
+        out.extend(right[right_index:])
 
-    if len(left) > 0:
-        out.extend(left)
+    if len(left) > left_index:
+        out.extend(left[left_index:])
+
+    print(f"Out: {out}")
+    print("-" * 10)
 
 
     return out
@@ -46,8 +63,9 @@ def merge_sort(sorting: list[T], /) -> list[T]:
         merge_sort(left), merge_sort(right)  # type: ignore[arg-type]
     )  # type: ignore[return-value]
 
-sorting = [0, 99, 87, 53, 828, 973, 7, 99, 34]
+if __name__ == "__main__":
+    sorting = [0, 99, 87, 53, 828, 973, 7, 99, 34]
 
-print(f"Executing merge_sort({sorting})...")
-print(merge_sort(sorting))
+    print(f"Executing merge_sort({sorting})...")
+    print(merge_sort(sorting))
 
