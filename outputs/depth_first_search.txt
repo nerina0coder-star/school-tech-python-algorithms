@@ -1,0 +1,12 @@
+Doing DFS {0: [1, 5], 1: [2, 6], 2: [3, 7], 3: [4, 8], 4: [5, 9], 5: [6, 10], 6: [4], 7: [3], 8: [2], 9: [1], 10: [0]}
+Searched cord: 0
+Searched cord: 1
+Searched cord: 2
+Searched cord: 3
+Searched cord: 4
+Searched cord: 5
+Searched cord: 6
+Searched cord: 10
+Searched cord: 9
+Searched cord: 8
+Searched cord: 7
